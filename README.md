@@ -1,3 +1,5 @@
+[![CI Tests](https://github.com/Obsidian-lava/QA-Automation-portfolio/actions/workflows/tests.yml/badge.svg)](https://github.com/Obsidian-lava/QA-Automation-portfolio/actions/workflows/tests.yml)
+
 Привет. Это мое портфолио для тестировщика (QA-Automation Engineer)
 В этой репозитории мои тесты на языке Python (api и ui тестирование). Библиотеки: Pytest, Playwright, FastAPI.
 
