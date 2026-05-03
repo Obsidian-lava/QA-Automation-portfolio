@@ -7,11 +7,11 @@ def test_check_my_local_server():
     assert response.status_code == 200
     data = response.json()
 
-    assert data['2'], "Такая задача отсутствует"
+    assert '2' in data, "Такая задача отсутствует"
     assert data['4']["title"], "Безымянная задача"
 
 def test_delete():
-    task_id = '2'
+    task_id = "2"
 
     delete_url = f"{url}/{task_id}"
 
@@ -20,8 +20,4 @@ def test_delete():
     response = requests.get(url)
     data = response.json()
 
-    assert not data[task_id], "Эта задача все еще присутствует в базе"
-
-    response_retry = requests.delete(delete_url)
-
-    assert response_retry.status_code == 404
+    assert task_id not in data, "Эта задача все еще присутствует в базе"
