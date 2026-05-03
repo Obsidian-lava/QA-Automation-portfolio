@@ -10,6 +10,6 @@ def get_tasks():
 def create_task(id: str,task: schemas.TaskSchema):
     return crud.add_task(id=id,task=task)
 
-@router.delete('/tasks')
-def delete_tasks():
-    return crud.delete_tasks()
+@router.delete('/tasks/{id}')
+def delete_tasks(id):
+    return crud.delete_tasks(id)
