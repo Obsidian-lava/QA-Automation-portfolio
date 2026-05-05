@@ -5,3 +5,4 @@ venv/
 *.pyc
 allure-results/
 allure-report/
+database.db
