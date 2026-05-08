@@ -13,3 +13,12 @@ def create_task(id: str,task: schemas.TaskSchema):
 @router.delete('/tasks/{id}')
 def delete_tasks(id):
     return crud.delete_tasks(id)
+
+@router.put('/tasks/{id}')
+def edit_task(id, task: schemas.TaskSchema):
+    existing_tasks = get_tasks()
+
+    if id not in existing_tasks:
+        return {"error": "Task not found"}, 404
+
+    return crud.update_task(id, task.title, task.description)

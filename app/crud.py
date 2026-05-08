@@ -37,3 +37,13 @@ def delete_tasks(id: str):
         return {"message": f"Task {id} deleted"}
     conn.close()
     return {"error": "task not found"}, 404
+
+def update_task(id: str, title: str, description: str):
+    conn = get_db()
+
+    cursor = conn.execute("UPDATE tasks SET title = ?, description = ? WHERE id = ?",
+                          (title, description, id))
+    conn.commit()
+    conn.close()
+    
+    return {"message": f"Task {id} updated"}
