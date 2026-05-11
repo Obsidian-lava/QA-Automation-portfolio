@@ -1,4 +1,5 @@
 from app.schemas import TaskSchema
+from app.schemas import TaskUpdateSchema
 from app.database import get_db
 
 db = {
@@ -47,3 +48,28 @@ def update_task(id: str, title: str, description: str):
     conn.close()
     
     return {"message": f"Task {id} updated"}
+
+def patch_task(id: str, task: TaskUpdateSchema):
+    conn = get_db()
+
+    cursor = conn.execute("SELECT * FROM tasks WHERE id = ?", (id))
+    old_task = cursor.fetchone()
+
+    if not old_task:
+        return {"error": "Not found"}, 404
+    
+    if task.title is not None:
+        new_title = task.title
+    else:
+        new_title = old_task['title']
+    
+    if task.description is not None:
+        new_description = task.description
+    else:
+        new_description = old_task['description']
+
+    conn.execute("UPDATE tasks SET title = ?, description = ? WHERE id = ?", (new_title, new_description, id))
+    conn.commit()
+    conn.close()
+    
+    return {"status": "Task partially updated"}

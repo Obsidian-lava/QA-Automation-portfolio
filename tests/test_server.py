@@ -36,3 +36,20 @@ def test_put():
 
     assert data[task_id]["title"] == new_data["title"]
     assert data[task_id]["description"] == new_data["description"]
+
+def test_patch():
+    task_id = "1"
+
+    patch_url = f"{url}/{task_id}"
+
+    requests.post(f"{url}/{task_id}", json={"title": "best title", "description": "best description"})
+
+    requests.patch(f"{url}/{task_id}", json={"title": "title was changed"})
+
+    response = requests.get(url)
+
+    data = response.json()
+
+
+    assert data[task_id]["title"] == "title was changed"
+    assert data[task_id]["description"] == "best description"

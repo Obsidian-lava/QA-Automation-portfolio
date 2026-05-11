@@ -22,3 +22,7 @@ def edit_task(id, task: schemas.TaskSchema):
         return {"error": "Task not found"}, 404
 
     return crud.update_task(id, task.title, task.description)
+
+@router.patch('/tasks/{id}')
+def patch_task(id, task: schemas.TaskUpdateSchema):
+    return crud.patch_task(id=id,task=task)
