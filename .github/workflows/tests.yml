@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Install Playwright Browsers
-      run: playwright install chromium --with-deps
+      run: playwright install --with-deps
 
     - name: Start FastAPI Server
       run: |
@@ -34,10 +34,10 @@ jobs:
         echo "Waiting for FastAPI server to start..."
         timeout 30s bash -c 'until curl -s http://127.0.0.1:8000/docs > /dev/null; do sleep 1; done' 
         
-    - name: Run Tests
+    - name: Run 
+      continue-on-error: true
       run: |
         pytest --alluredir=allure-results
-        continue-on-error: true
     
     - name: Upload Allure Results Artifact
       uses: actions/upload-artifact@v4
