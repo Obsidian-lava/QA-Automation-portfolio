@@ -4,6 +4,8 @@
 В этой репозитории мои тесты на языке Python (api и ui тестирование). Библиотеки: Pytest, Playwright, FastAPI.
 
 ## Как запустить:
-1. pip install pytest pytest-playwright requests, fastapi uvicorn
-2. playwright install
-3. pytest
+1. Клонируйте репозиторий
+2. Откройте терминал и впишите: pip install -r requirements.txt
+3. Потом впишите: playwright install
+4. Запустите сервер командой: uvicorn app.server:app (не закрывайте этот терминал)
+5. Откройте терминал в папке с тестами и введите команду: pytest
